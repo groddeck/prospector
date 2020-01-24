@@ -1,0 +1,27 @@
+<%= form_with(model: stage_event, local: true) do |form| %>
+  <% if stage_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(stage_event.errors.count, "error") %> prohibited this stage_event from being saved:</h2>
+
+      <ul>
+        <% stage_event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :prospect_id %>
+    <%= form.text_field :prospect_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stage_name %>
+    <%= form.text_field :stage_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

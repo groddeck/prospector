@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Stage Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Prospect</th>
+      <th>Stage name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stage_events.each do |stage_event| %>
+      <tr>
+        <td><%= stage_event.prospect_id %></td>
+        <td><%= stage_event.stage_name %></td>
+        <td><%= link_to 'Show', stage_event %></td>
+        <td><%= link_to 'Edit', edit_stage_event_path(stage_event) %></td>
+        <td><%= link_to 'Destroy', stage_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stage Event', new_stage_event_path %>

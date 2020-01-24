@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Prospects</h1>
+
+<%
+  stages = [
+    '',
+    'Submitted',
+    'Screening scheduled',
+    'Screening done',
+    '1st-Round call scheduled',
+    '1st-Round call done',
+    'On-site scheduled',
+    'On-site done',
+    'Post-final scheduled',
+    'Post-final done'
+  ]
+%>
+<hr>
+<table>
+  <thead>
+    <tr style="font-weight: bold">
+      <td>Not submitted</td>
+      <td>Submitted</td>
+      <td>Screening scheduled</td>
+      <td>Screening done</td>
+      <td>1st Round call scheduled</td>
+      <td>1st Round call done</td>
+      <td>On-site scheduled</td>
+      <td>On-site done</td>
+      <td>Post-final scheduled</td>
+      <td>Post-final done</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prospects.each_with_index do |prospect, i| %>
+      <tr style="background-color: <%= (i%2)==1 ? 'white' : 'aliceblue' %>">
+        <% stages.each_with_index do |stage, stage_index| %>
+          <%
+            if prospect.stage_index == stage_index
+          %>
+              <td>
+                <%= link_to "<-", "/prospects/#{prospect.id}/revert", method: :patch %>
+                <%= prospect.company_name %>
+                <%= link_to "->", "/prospects/#{prospect.id}/advance", method: :patch %>
+              </td>
+          <%
+            else
+          %>
+            <td></td>
+          <%
+            end
+          %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company name</th>
+      <th>Position name</th>
+      <th>Recruiter name</th>
+      <th>Stage name</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prospects.each_with_index do |prospect, i| %>
+      <tr style="background-color: <%= (i%2)==0 ? 'white' : 'aliceblue' %>">
+        <td><%= prospect.company_name %></td>
+        <td><%= prospect.position_name %></td>
+        <td><%= prospect.recruiter_name %></td>
+        <td><%= prospect.stage_events.last.stage_name %></td>
+        <td><%= prospect.notes.map(&:body).join(',') %></td>
+        <td><%= link_to 'Show', prospect %></td>
+        <td><%= link_to 'Edit', edit_prospect_path(prospect) %></td>
+        <td><%= link_to 'Destroy', prospect, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prospect', new_prospect_path %>

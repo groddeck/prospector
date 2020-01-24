@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company name:</strong>
+  <%= @prospect.company_name %>
+</p>
+
+<p>
+  <strong>Position name:</strong>
+  <%= @prospect.position_name %>
+</p>
+
+<p>
+  <strong>Recruiter name:</strong>
+  <%= @prospect.recruiter_name %>
+</p>
+
+<p>
+  <strong>Stage name:</strong>
+  <%= @prospect.stage_name %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @prospect.note %>
+</p>
+
+<%= link_to 'Edit', edit_prospect_path(@prospect) %> |
+<%= link_to 'Back', prospects_path %>

@@ -1,0 +1,13 @@
+<h1>Editing Prospect</h1>
+
+<%= render 'form', prospect: @prospect %>
+
+<hr>
+Add Note
+<form id="note_form" method="post" action="/prospects/<%= @prospect.id %>/notes">
+  <input name="body" />
+  <input type="submit" />
+</form>
+
+<%= link_to 'Show', @prospect %> |
+<%= link_to 'Back', prospects_path %>
