@@ -83,3 +83,4 @@ production:
   database: prospector_production
   username: prospector
   password: <%= ENV['PROSPECTOR_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
