@@ -15,6 +15,12 @@ class Prospect < ApplicationRecord
     'Post-final done'
   ]
 
+  after_create :init_stage
+
+  def init_stage
+    self.stage_events << StageEvent.new(stage_name: STAGES.first)
+  end
+
   def advance!
     i = stage_index
     new_stage_name = STAGES[i+1]
