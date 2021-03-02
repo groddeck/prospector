@@ -6,7 +6,7 @@ class ProspectsController < ApplicationController
   # GET /prospects
   # GET /prospects.json
   def index
-    @prospects = Prospect.all.reverse
+    @prospects = current_user.prospects.reverse
   end
 
   # GET /prospects/1
@@ -26,7 +26,7 @@ class ProspectsController < ApplicationController
   # POST /prospects
   # POST /prospects.json
   def create
-    @prospect = Prospect.new(prospect_params)
+    @prospect = current_user.prospects.new(prospect_params)
 
     respond_to do |format|
       if @prospect.save
@@ -84,7 +84,7 @@ class ProspectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_prospect
-      @prospect = Prospect.find(params[:id])
+      @prospect = current_user.prospects.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

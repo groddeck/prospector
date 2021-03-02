@@ -1,6 +1,7 @@
 class Prospect < ApplicationRecord
   has_many :notes
   has_many :stage_events
+  belongs_to :user
 
   STAGES = [
     '',
