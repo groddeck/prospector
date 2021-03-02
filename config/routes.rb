@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :stage_events
   resources :notes
   resources :prospects
@@ -7,4 +8,6 @@ Rails.application.routes.draw do
   patch '/prospects/:id/advance', to: 'prospects#advance'
   patch '/prospects/:id/revert', to: 'prospects#revert'
   post '/prospects/:id/notes', to: 'prospects#note'
+
+  root to: 'prospects#index'
 end
